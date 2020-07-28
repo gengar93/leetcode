@@ -16,11 +16,9 @@ class Solution:
             seq.append(s[i])
 
         for row in range(1, numRows - 1):
-            for col in range(num_cols):
-                if row + col * col_size < len(s):
-                    seq.append(s[row + col * col_size])
-                if col_size * (col + 1) - row < len(s):
-                    seq.append(s[col_size * (col + 1) - row])
+            for col in range(row, len(s), col_size):
+                seq.append(s[col])
+                seq.append(s[col_size * (col + 1) - row])
 
         for i in range(numRows - 1, len(s), col_size):
             seq.append(s[i])
