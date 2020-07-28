@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/zigzag-conversion/
 
-import math
-
 
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
@@ -9,16 +7,16 @@ class Solution:
             return s
 
         col_size = 2 * numRows - 2
-        num_cols = math.ceil(len(s) / col_size)
         seq = []
 
         for i in range(0, len(s), col_size):
             seq.append(s[i])
 
-        for row in range(1, numRows - 1):
-            for col in range(row, len(s), col_size):
-                seq.append(s[col])
-                seq.append(s[col_size * (col + 1) - row])
+        for i in range(1, numRows - 1):
+            for j in range(i, len(s), col_size):
+                seq.append(s[j])
+                if j + col_size - 2 * i < len(s):
+                    seq.append(s[j + col_size - 2 * i])
 
         for i in range(numRows - 1, len(s), col_size):
             seq.append(s[i])
@@ -32,6 +30,7 @@ if __name__ == '__main__':
         ("PAYPALISHIRING", 4, "PINALSIGYAHRPI"),
         ("POKEMONEMERALDISGOLD", 5, "PMGOEESOKNRILEOADDML"),
         ("SINGLELINE", 1, "SINGLELINE"),
+        ("SINGLECOLUMN", 20, "SINGLECOLUMN"),
         ("TWOLINES", 2, "TOIEWLNS"),
         ("ABCDEFGHI", 3, "AEIBDFHCG"),
         ("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 3, "AEIMQUYBDFHJLNPRTVXZCGKOSW")
